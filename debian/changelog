@@ -1,3 +1,9 @@
+libpayroll-perl (0.8-1) unstable; urgency=low
+
+  * Updated to latest release.
+
+ -- James A. Pattie <james@pcxperience.com>  Thu, 12 Aug 2004 16:30:00 -0500
+
 libpayroll-perl (0.7-1) unstable; urgency=low
 
   * Updated to latest release.

@@ -1,3 +1,5 @@
+v0.8 - 2004-08-12
+ - Updated the update_payroll script to use the startPeriod/endPeriod values.
 v0.7 - 2004-07-30
  - Changed XML version to 1.1, added startPeriod/endPeriod values to the
    <payroll> tag to allow the dates the payroll is covering to be specified.
