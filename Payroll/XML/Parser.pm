@@ -1,5 +1,5 @@
 # Parser.pm - Will parse an XML file and return the DBI result set.
-# Created by James A. Pattie.  Copyright (c) 2001, PC & Web Xperience, Inc.
+# Created by James A. Pattie.  Copyright (c) 2001-2004, Xperience, Inc.
 =head1 NAME
 
 Parser - The XML Configuration Parser Module.
@@ -31,7 +31,7 @@ require Exporter;
 @ISA = qw(Exporter AutoLoader);
 @EXPORT = qw();
 
-$VERSION = "1.0";
+$VERSION = "1.1";
 
 =head1 FUNCTIONS
 
@@ -57,8 +57,8 @@ sub new
     die "$errStr You must specify the periodNames hash ref!\n";
   }
 
-  $self->{dataRawVersion} = "1.0";  # version of type="raw" file
-  $self->{dataCookedVersion} = "1.0"; # version of type="cooked" file
+  $self->{dataRawVersion} = "1.1";  # version of type="raw" file
+  $self->{dataCookedVersion} = "1.1"; # version of type="cooked" file
   $self->{validCountries} = $args{validCountries};
   $self->{periodNames} = $args{periodNames};
 
@@ -390,11 +390,27 @@ sub getGlobalInfo
   {
     die "$errStr  You do not have the genSysId defined!\n";
   }
+  if (!exists $attributes{startPeriod})
+  {
+    die "$errStr  You do not have the startPeriod defined!\n";
+  }
+  if (!exists $attributes{endPeriod})
+  {
+    die "$errStr  You do not have the endPeriod defined!\n";
+  }
 
   # validate the date
   if ($attributes{date} !~ /^(\d{8})$/)
   {
     die "$errStr  date = '$attributes{date}' does not appear to be valid!\n";
+  }
+  if ($attributes{startPeriod} !~ /^(\d{8})$/)
+  {
+    die "$errStr  startPeriod = '$attributes{startPeriod}' does not appear to be valid!\n";
+  }
+  if ($attributes{endPeriod} !~ /^(\d{8})$/)
+  {
+    die "$errStr  endPeriod = '$attributes{endPeriod}' does not appear to be valid!\n";
   }
 
   # validate the period
@@ -410,6 +426,8 @@ sub getGlobalInfo
   $self->{dataObj}->{date} = $attributes{date};
   $self->{dataObj}->{period} = $attributes{period};
   $self->{dataObj}->{genSysId} = $attributes{genSysId};
+  $self->{dataObj}->{startPeriod} = $attributes{startPeriod};
+  $self->{dataObj}->{endPeriod} = $attributes{endPeriod};
 }
 
 # void getPeopleIn()

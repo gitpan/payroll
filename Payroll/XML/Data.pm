@@ -1,5 +1,5 @@
 # Data.pm - Will pull settings from an XML config file into a format usable by the system.
-# Created by James A. Pattie.  Copyright (c) 2002, PC & Web Xperience, Inc.
+# Created by James A. Pattie.  Copyright (c) 2002-2004, Xperience, Inc.
 
 package Payroll::XML::Data;
 
@@ -11,7 +11,7 @@ require Exporter;
 @ISA = qw(Exporter AutoLoader);
 @EXPORT = qw();
 
-$VERSION = "1.0";
+$VERSION = "1.1";
 
 # new
 sub new
@@ -32,12 +32,14 @@ sub new
   {
     die "$errStr  periodNames not defined!\n";
   }
-  $self->{version} = "1.0";
+  $self->{version} = "1.1";
   $self->{type} = "raw";
   $self->{dataFile} = "";  # only used for debugging purposes.
   $self->{date} = "";
   $self->{period} = "";
   $self->{genSysId} = "";
+  $self->{startPeriod} = "";
+  $self->{endPeriod} = "";
   $self->{persons} = [];
   $self->{errorCodes} = {
     0  => "version = '%s' is invalid",
@@ -58,6 +60,7 @@ sub new
     15 => "person id='%s', adjustment='%s' duplicated!",
     16 => "genSysId = '%s' is invalid",
     17 => "person id='%s', adjustment: %s must be defined!",
+    18 => "%s = '%s' is invalid",  # used by start/end Period variables.
   };
 
   return $self;
@@ -93,7 +96,7 @@ sub isValid
   my $self = shift;
   my @errors = ();
 
-  if ($self->{version} !~ /^(1.0)$/)
+  if ($self->{version} !~ /^(1.1)$/)
   {
     push @errors, sprintf($self->{errorCodes}->{0}, $self->{version});
   }
@@ -108,6 +111,22 @@ sub isValid
   elsif ($self->{date} !~ /^(\d{8})$/)
   {
     push @errors, sprintf($self->{errorCodes}->{3}, $self->{date});
+  }
+  if (length $self->{startPeriod} == 0)
+  {
+    push @errors, sprintf($self->{errorCodes}->{18}, "startPeriod", $self->{startPeriod});
+  }
+  elsif ($self->{startPeriod} !~ /^(\d{8})$/)
+  {
+    push @errors, sprintf($self->{errorCodes}->{18}, "startPeriod", $self->{startPeriod});
+  }
+  if (length $self->{endPeriod} == 0)
+  {
+    push @errors, sprintf($self->{errorCodes}->{18}, "endPeriod", $self->{endPeriod});
+  }
+  elsif ($self->{endPeriod} !~ /^(\d{8})$/)
+  {
+    push @errors, sprintf($self->{errorCodes}->{18}, "endPeriod", $self->{endPeriod});
   }
   if (! exists $self->{periodNames}->{$self->{period}})
   {
@@ -291,7 +310,7 @@ sub generateXML
   {
     $result .= <<"END_OF_XML";
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<payroll type="raw" version="$self->{version}" date="$self->{date}" period="$self->{period}" genSysId="$self->{genSysId}">
+<payroll type="raw" version="$self->{version}" date="$self->{date}" period="$self->{period}" genSysId="$self->{genSysId}" startPeriod="$self->{startPeriod}" endPeriod="$self->{endPeriod}">
 END_OF_XML
     for (my $i=0; $i < scalar @{$self->{persons}}; $i++)
     {
@@ -407,9 +426,13 @@ to generate a valid XML file from the data stored in the data hash.
 
   dataFile - the name of the file parsed or the string of XML
 
-  date - the date the Payroll was generated for
+  date - the date the Payroll was generated on
 
-  period - the period of time the payroll is for
+  period - the period of time the payroll is for (weekly, bimonthly, etc.)
+
+  startPeriod - beginning date of the payroll period.
+
+  endPeriod - ending date of the payroll period.
   
   genSysId - the id used by the generating system to identify this payroll
 

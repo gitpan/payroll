@@ -1,3 +1,6 @@
+v0.7 - 2004-07-30
+ - Changed XML version to 1.1, added startPeriod/endPeriod values to the
+   <payroll> tag to allow the dates the payroll is covering to be specified.
 v0.6 - 2004-01-05
  - Debianized!
  - Updated the rates for 2004 and fixed some 2003 rates for FICA.

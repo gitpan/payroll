@@ -4,7 +4,7 @@ use strict;
 use Payroll::XML::Parser;
 use Payroll::XML::OutData;
 
-my $version = "1.0";
+my $version = "1.1";
 my $errStr = "(parse_test) - Error:";
 
 my %validCountries = ( "US" => 1, "Canada" => 1 );
@@ -16,7 +16,7 @@ my $resultSetObj = Payroll::XML::Parser->new(validCountries => \%validCountries,
 
 my $xmlString = <<"DATA";
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<payroll type="raw" version="1.0" date="20020415" period="weekly" genSysId="12">
+<payroll type="raw" version="1.1" date="20040715" period="weekly" genSysId="12" startPeriod="20040701" endPeriod="20040715">
   <person id="123456789" name="John Doe" marital="single">
     <country name="US" gross="1000.00" allow="1" withHold="1.00" grossYTD="3000.00" federalYTD="100.00" method="">
       <state name="MO" gross="400.00" allow="0" withHold="5.00" method="">
@@ -68,9 +68,11 @@ print "\n----------- OutData Test ----------\n";
 
 my $outObj = Payroll::XML::OutData->new(periodNames => \%periodNames);
 $outObj->{dataFile} = "";
-$outObj->{date} = "20020416";
+$outObj->{date} = "20040730";
 $outObj->{period} = "monthly";
 $outObj->{genSysId} = "12";
+$outObj->{startPeriod} = "20040716";
+$outObj->{endPeriod} = "20040730";
 my @items = ( { name => "gross", value => "500.00", comment => "" }, { name => "net", value => "-500.00", comment => "" }, { name => "Reimbursement", value => "20.25", comment => "Parking fees" } );
 my %person = ( id => "123457902", name => "James", items => \@items );
 push @{$outObj->{persons}}, \%person;

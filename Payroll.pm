@@ -45,7 +45,7 @@ require Exporter;
 @ISA = qw(Exporter AutoLoader);
 @EXPORT = qw();
 
-$VERSION = '0.6';
+$VERSION = '0.7';
 
 my %trueFalse = ( 1 => "true", 0 => "false" );
 my %falseTrue = ( "true" => 1, "false" => 0 );
@@ -246,6 +246,8 @@ sub process
   $outgoingData->{period} = $period;
   $outgoingData->{date} = $date;
   $outgoingData->{genSysId} = $incomingData->{genSysId};
+  $outgoingData->{startPeriod} = $incomingData->{startPeriod};
+  $outgoingData->{endPeriod} = $incomingData->{endPeriod};
 
   # loop over all persons in the data.
   foreach my $person (@{$incomingData->{persons}})

@@ -3,11 +3,11 @@ Section: perl
 Priority: optional
 Build-Depends-Indep: debhelper (>= 3.0.5), perl (>= 5.8.0-7)
 Maintainer: James A. Pattie <james@pcxperience.com>
-Standards-Version: 3.5.8
+Standards-Version: 3.6.1
 
 Package: libpayroll-perl
 Architecture: all
-Depends: perl (>= 5.8.0)
+Depends: perl (>= 5.8.0), libxml2 (>= 2.4.22), libxml-sax-perl (>= 0.10), libxml-namespacesupport-perl (>= 1.07), libxml-libxml-perl (>= 1.51)
 Description:  Payroll
  The Payroll modules provide the routines and data structures necessary to
  calculate federal, state and local taxes.  It is designed to be globally

@@ -1,6 +1,6 @@
 README for Payroll Perl Modules
 Created by James A. Pattie, Xperience, Inc. 10/11/2002
-Copyright 2002-2003, Xperience, Inc. http://www.pcxperience.com/
+Copyright 2002-2004, Xperience, Inc. http://www.pcxperience.com/
 
 Payroll is a series of Perl Modules that provides an API for working with
 multiple countries federal, state and local taxes.  It also supports calculating
@@ -25,8 +25,9 @@ To install from tarball:
 	make
 	(as root)
 	make install
-        (if you want the process_payroll script installed)
+        (if you want the scripts installed)
         cp process_payroll /usr/bin
+        cp update_payroll /usr/bin
 
 
 To install from deb:
