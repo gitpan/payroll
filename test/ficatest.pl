@@ -5,7 +5,7 @@
 #This package is released under the GNU General Public License.
 #You should have recieved a copy of the GPL with it.
 # Copyright (c) 2002 http://www.pcxperience.org  All rights reserved.
-# $Id: ficatest.pl,v 1.1 2003/06/25 13:47:29 moreejt Exp $
+# $Id: ficatest.pl,v 1.2 2003/09/05 19:50:06 moreejt Exp $
 
 use strict;
 use Payroll::US::FICA;
@@ -20,7 +20,12 @@ if (not defined $FICA)
 }
 else
 {
-
+ print "\nTesting rateCap method\n";
+ my @rateCap = $FICA->rateCap("20020101");
+ if (@rateCap[1] eq "")
+ { print "Error! rateCap Failed!\n".$FICA->errorMessage."\n";}
+ else
+ { print "Rate: '$rateCap[0]'\nCap: '$rateCap[1]'\n\n"; }
  print "\nTesting setError method\n";
  $FICA->setError("Error:  is set");
  print $FICA->errorMessage() . "\n";
@@ -47,12 +52,12 @@ else
 
   print "\nTesting calculate method...\n";
   my @testData2 = (
-         {gross => "1000",  date => '20010801', YTD => '800.00', round => "no", answer => "62.00" },
-         {gross => "100",  date => '20010801', YTD => '79999.99', round => "no", answer => "6.20" },
-         {gross => "1000",  date => '20010801', YTD => '80399', round => "no", answer => "0.06" },
+         {gross => "1000",  date => '20010801', YTD => '800.00', round => "no", answer => "-62.00" },
+         {gross => "100",  date => '20010801', YTD => '79999.99', round => "no", answer => "-6.20" },
+         {gross => "1000",  date => '20010801', YTD => '80399', round => "no", answer => "-0.06" },
          {gross => "1000",  date => '20010801', YTD => '80400', round => "no", answer => "0.00" },
          {gross => "1000",  date => '20010801', YTD => '80500', round => "no", answer => "0.00" },
-         {gross => "1000",  date => '20010801', YTD => '80300', round => "no", answer => "6.20" },
+         {gross => "1000",  date => '20010801', YTD => '80300', round => "no", answer => "-6.20" },
          {gross => "1000",  date => '19960801', YTD => '0', round => "no", answer => "" },
   );
   print "GROSS\tEXPECT\tACTUAL\tY/N\n";

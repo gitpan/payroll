@@ -1,7 +1,7 @@
 # FICA.pm
 # Created:  Feb 27 15:24:49 CST 2002
 # by JT Moree
-# $Id: FICA.pm,v 1.6 2003/06/24 21:44:20 moreejt Exp $
+# $Id: FICA.pm,v 1.7 2003/09/05 19:50:06 moreejt Exp $
 # License: same as perl
 # 2002-2003 Xperience, Inc. www.pcxperience.com
 
@@ -33,7 +33,7 @@ require Exporter;
 @ISA = qw(Exporter AutoLoader);
 @EXPORT = qw();
 
-$VERSION = '.1';
+$VERSION = '.2';
 
 use constant TRUE => 1;
 use constant FALSE => 0;
@@ -152,7 +152,7 @@ sub calculate
                {
                  $answer = $self->{dataTables}->{$foundDate}->{rate} * $gross;
                }
-        }  #ignore cap if it is flagged with -1 or none of the above cases were true
+        }  #ignore cap if it is 0 or none of the above cases were true
         else
         {
           $answer = $self->{dataTables}->{$foundDate}->{rate} * $gross;
@@ -170,7 +170,7 @@ sub calculate
         return sprintf("%.2f", $answer);
 }
 
-=head2 string lookupDate (date)
+=head2 string lookupDate ("date") or (date =>)
 
         Returns the date closest to the given date that is less than or equal to it
 
@@ -180,20 +180,27 @@ sub lookupDate
 {
   my $self = shift;
   my $found = undef;
-  my %args = (date => "", @_ );
-
-  if ( $self->isValid(date => $args{date}) == FALSE)
-  {  $self->setError($self->errorString . "Invalid format for date:'$args{date}' in lookupDate\n"); return undef;  }
+  my %args;
+  my $date;
+  if (scalar @_ == 1)  {
+    $date = @_[0]; }
+  else
+  {
+    %args = (date => "", @_ );
+    $date = $args{date};
+  }
+  if ( $self->isValid(date => $date) == FALSE)
+  {  $self->setError($self->errorString . "Invalid format for date:'$date' in lookupDate\n"); return undef;  }
 
   #check boundaries of data hash first
-  my $first =$self->firstDate();
-  if ( $args{date} < $first )
+  my $first = $self->firstDate();
+  if ( $date < $first )
   {  $self->setError($self->errorString . "Error.  Date is earlier than first date in list: $first\n"); return undef; }
 
   #walk over dataTables hash looking for a close match
   foreach my $current (reverse sort keys %{$self->{dataTables}} )
   {
-    if ($current <= $args{date})
+    if ($current <= $date)
     {
       $found = $current;
       last;
@@ -311,6 +318,35 @@ sub lastDate
   my $self = shift;
   #grab keys from hash and order reverse so that the latest one is first
   return (reverse sort keys %{$self->{dataTables}})[0] ;
+}
+
+=head2 (rate, cap) rateCap(date)
+
+        Returns an array containing the rate and Cap at
+        the given date for Social Security Taxes.
+        Returns undef on error.  0 for cap if there isn't one.
+
+=cut
+sub rateCap
+{
+  my $self = shift;
+  my $date;
+  if (scalar @_ == 1)  {
+    $date = @_[0];
+  }
+  else 
+  {  
+    $self->setError("Date is missing");
+    return undef;
+  }
+  if ($date !~ m/^(\d{8})$/)
+  {
+    $self->setError("Invalid date '". $date . "'");
+    return undef;
+  }
+  $date = $self->lookupDate($date);
+
+  return ($self->{dataTables}->{$date}->{rate}, $self->{dataTables}->{$date}->{cap});
 }
 
 =pod

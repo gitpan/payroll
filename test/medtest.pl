@@ -5,7 +5,7 @@
 #This package is released under the GNU General Public License.
 #You should have recieved a copy of the GPL with it.
 # Copyright (c) 2002 http://www.pcxperience.org  All rights reserved.
-# $Id: medtest.pl,v 1.1 2003/06/25 13:47:29 moreejt Exp $
+# $Id: medtest.pl,v 1.2 2003/09/05 19:50:07 moreejt Exp $
 
 use strict;
 use Payroll::US::Medicare;
@@ -20,6 +20,12 @@ if (not defined $Medicare)
 }
 else
 {
+ print "\nTesting rateCap method\n";
+ my @rateCap = $Medicare->rateCap("20020101");
+ if (@rateCap[1] eq "")
+ { print "Error! rateCap Failed!\n".$Medicare->errorMessage."\n";}
+ else
+ { print "Rate: '$rateCap[0]'\nCap: '$rateCap[1]'\n\n"; }
 
  print "\nTesting setError method\n";
  $Medicare->setError("Error:  is set");
@@ -47,13 +53,13 @@ else
 
   print "\nTesting calculate method...\n";
   my @testData2 = (
-         {gross => "1000",  date => '20010801', YTD => '0', round => "no", answer => "14.50" },
+         {gross => "1000",  date => '20010801', YTD => '0', round => "no", answer => "-14.50" },
          {gross => "1000",  date => '19960801', YTD => '0', round => "no", answer => "" },
-         {gross => "1000",  date => '20010801', YTD => '80399', round => "no", answer => "14.50" },
-         {gross => "1000",  date => '20010801', YTD => '80400', round => "no", answer => "14.50" },
-         {gross => "1000",  date => '20010801', YTD => '80500', round => "no", answer => "14.50" },
-         {gross => "100",  date => '20010801', YTD => '1', round => "no", answer => "1.45" },
-         {gross => "1000",  date => '20010801', YTD => '80300', round => "no", answer => "14.50" },
+         {gross => "1000",  date => '20010801', YTD => '80399', round => "no", answer => "-14.50" },
+         {gross => "1000",  date => '20010801', YTD => '80400', round => "no", answer => "-14.50" },
+         {gross => "1000",  date => '20010801', YTD => '80500', round => "no", answer => "-14.50" },
+         {gross => "100",  date => '20010801', YTD => '1', round => "no", answer => "-1.45" },
+         {gross => "1000",  date => '20010801', YTD => '80300', round => "no", answer => "-14.50" },
   );
   print "GROSS\tEXPECT\tACTUAL\tY/N\n";
   for (my $i=0; $i < scalar @testData2; $i++)

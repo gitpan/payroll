@@ -1,4 +1,4 @@
-README for Payroll Perl Modules - v0.3
+README for Payroll Perl Modules
 Created by James A. Pattie, Xperience, Inc. 10/11/2002
 Copyright 2002-2003, Xperience, Inc. http://www.pcxperience.com/
 
@@ -25,6 +25,8 @@ To install from tarball:
 	make
 	(as root)
 	make install
+        (if you want the process_payroll script installed)
+        cp process_payroll /usr/bin
 
 
 To install from rpm:
@@ -43,4 +45,18 @@ the result will go into the second file.  You can specify - (for the first file)
 and it will know to work with stdin.  I.e.  you can pipe the file to be 
 processed.  Ex. 'cat input.xml | process_payroll -' would process input.xml from
 the stdin and then output the result to stdout.
+
+REQUIREMENTS:
+	The XML::LibXML code is known to work with the following versions and 
+	newer versions as well:
+	libxml2 		2.4.11
+	XML::SAX		0.10
+	XML::NamespaceSupport	1.07
+	XML::LibXML		1.51
+	File::Temp		0.12
+
+We also have done all of our development/testing only on Perl 5.6.1 but will
+hopefully be able to move to 5.8.0 and newer versions of XML::LibXML in the
+near future.  Testing is now being done using Debian and perl 5.8.0 and 
+everything works just fine!
 

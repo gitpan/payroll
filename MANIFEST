@@ -37,3 +37,8 @@ t/use.t
 Changes
 process_payroll
 payroll.spec
+debian/control
+debian/changelog
+debian/copyright
+debian/compat
+debian/rules

@@ -1,5 +1,12 @@
-v0.4 - 2003/6/25
+v0.5 - 2004-09-05
+ - Changed cap in Medicare to be 0 instead of -1 
+ - added rateCap function to FICA and Medicare
+ - Improved README contents in regards to installation instructions and added
+   a REQUIREMENTS section.
+v0.4 - 2003-06-25
  - moved testing scripts to subdir to stop pollution of perl tree
+ - added the t/use.t file so CPAN is happy.
+ - updated the rpm spec file.
 v0.3 - 2003-6-24
  - changed data structure internally to solve married obfuscation
 v0.2 - 2003-03-20

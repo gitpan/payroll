@@ -1,7 +1,10 @@
+%define perl 5.6.1
+%define distro rh73
+
 Summary: Perl Module that Provides a Payroll API.
 Name: payroll
-Version: 0.4
-Release: 1
+Version: 0.5
+Release: 1.%{distro}
 Copyright: Perl Artistic License
 Group: Applications/CPAN
 Source: payroll-%{version}.tar.gz
@@ -9,8 +12,8 @@ URL: http://www.pcxperience.org/
 Vendor: Xperience, Inc.
 Packager: James A. Pattie <james@pcxperience.com>
 BuildRoot: /var/tmp/payroll-%{version}-buildroot/
-BuildRequires: perl = 5.6.1
-Requires: perl = 5.6.1, libxml2 >= 2.4.11, perl-XML-SAX >= 0.10, perl-XML-NamespaceSupport >= 1.07, perl-XML-LibXML >= 1.51, perl(File::Temp) >= 0.12
+BuildRequires: perl = %{perl}
+Requires: perl = %{perl}, libxml2 >= 2.4.11, perl-XML-SAX >= 0.10, perl-XML-NamespaceSupport >= 1.07, perl-XML-LibXML >= 1.51, perl(File::Temp) >= 0.12
 
 %description
 Payroll is a series of Perl Modules that provides an API for working with

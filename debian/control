@@ -1,0 +1,17 @@
+Source: libpayroll-perl
+Section: perl
+Priority: optional
+Build-Depends-Indep: debhelper (>= 3.0.5), perl (>= 5.8.0-7)
+Maintainer: James A. Pattie <james@pcxperience.com>
+Standards-Version: 3.5.8
+
+Package: libpayroll-perl
+Architecture: all
+Depends: perl (>= 5.8.0)
+Description:  Payroll
+ The Payroll modules provide the routines and data structures necessary to
+ calculate federal, state and local taxes.  It is designed to be globally
+ useful, but only US support has been implemented.  
+ .
+ If you are in any other state than Missouri, we would appreciate your state
+ supported. :)
