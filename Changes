@@ -1,0 +1,14 @@
+v0.3 - 2003-6-24
+ - changed data structure internally to solve married obfuscation
+v0.2 - 2003-03-20
+ - Made adjustments allow multiple of the same name to be specified.
+ - Added process_payroll script to the distro.
+v0.1 - 2002-10-15
+ - First really usable release.  Fleshed out the XML parsing code.
+ - Currently only Country = US is available.
+ - Currently only State = MO is available for country = US.
+ - You can specify the Federal and State allowances and extra WithHoldings.
+ - You can specify miles to calculate for each country.
+ - You can specify adjustments that get applied to the net total after all
+   tax calculations, etc. are done.
+
