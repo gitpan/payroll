@@ -1,6 +1,6 @@
 Summary: Perl Module that Provides a Payroll API.
 Name: payroll
-Version: 0.3
+Version: 0.4
 Release: 1
 Copyright: Perl Artistic License
 Group: Applications/CPAN
@@ -28,7 +28,7 @@ federal and state.
 
 Federal Income tables are only available for any date >= 07/01/2001.
 
-See the payroll_test.pl and test.xml files in the documentation directory
+See the payroll_test.pl and input.xml files in the documentation directory
 for a sample implementation.
 
 /usr/bin/process_payroll is the script we recommend you use to actually do
@@ -74,14 +74,15 @@ fi
 %doc Changes
 %doc README
 %doc LICENSE
-%doc input.xml
-%doc output.xml
-%doc payroll_test.pl
+%doc test
 %doc docs
 /usr/bin/process_payroll
 
 %changelog
-* Tues June 24 2003 JT Moree <moreejt@pcxperience.com> - 0.3-1
+* Wed Jun 25 2003 JT Moree <james@pcxperience.com> - 0.4-1
+- Cleaned up the test files location, etc.
+
+* Tue Jun 24 2003 JT Moree <moreejt@pcxperience.com> - 0.3-1
 - Changed the data storage to fix married obfuscation.
 
 * Fri Mar 21 2003 James A. Pattie <james@pcxperience.com> - 0.2-2

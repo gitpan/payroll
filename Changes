@@ -1,3 +1,5 @@
+v0.4 - 2003/6/25
+ - moved testing scripts to subdir to stop pollution of perl tree
 v0.3 - 2003-6-24
  - changed data structure internally to solve married obfuscation
 v0.2 - 2003-03-20
