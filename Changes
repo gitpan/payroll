@@ -1,4 +1,7 @@
-v0.5 - 2004-09-05
+v0.6 - 2004-01-05
+ - Debianized!
+ - Updated the rates for 2004 and fixed some 2003 rates for FICA.
+v0.5 - 2003-09-05
  - Changed cap in Medicare to be 0 instead of -1 
  - added rateCap function to FICA and Medicare
  - Improved README contents in regards to installation instructions and added

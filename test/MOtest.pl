@@ -6,7 +6,7 @@
 #This package is released under the GNU General Public License.
 #You should have recieved a copy of the GPL with it.
 # Copyright (c) 2002 http://www.pcxperience.org  All rights reserved.
-# $Id: MOtest.pl,v 1.1 2003/06/25 13:47:29 moreejt Exp $
+# $Id: MOtest.pl,v 1.2 2004/01/05 20:12:55 moreejt Exp $
 
 use strict;
 use Payroll::US::MO::StateIncome;
@@ -32,9 +32,7 @@ else
     print "$period\n";
     print "  $stateIncome->{dataTables}->{$period}->{federalLimit}->{single}\t: Federal Limit (single)\n";
     print "  $stateIncome->{dataTables}->{$period}->{federalLimit}->{married}\t: Federal Limit (married)\n";
-    print "  $stateIncome->{dataTables}->{$period}->{married}\t: Married\n";
-    print "  $stateIncome->{dataTables}->{$period}->{spouseWorks}\t: Spouse Works\n";
-    print "  $stateIncome->{dataTables}->{$period}->{head}\t: Head of HouseHold\n";
+    print "  $stateIncome->{dataTables}->{$period}->{federalLimit}->{spouseWorks}\t: Federal Limit (Spouse Works)\n";
     print "  Standard Deductions\n";
     foreach my $ded ( keys %{$stateIncome->{dataTables}->{$period}->{standardDeduction}} )
     {  print "    $stateIncome->{dataTables}->{$period}->{standardDeduction}->{$ded}\t: $ded\n";  }

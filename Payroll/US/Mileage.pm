@@ -1,7 +1,7 @@
 # Mileage.pm
 # Created:  Feb 27 15:24:49 CST 2002
 # by James A. Pattie
-# $Id: Mileage.pm,v 1.3 2003/06/24 21:44:20 moreejt Exp $
+# $Id: Mileage.pm,v 1.4 2004/01/05 20:12:54 moreejt Exp $
 # License: same as perl
 # 2002-2003 Xperience, Inc. www.pcxperience.com
 
@@ -63,6 +63,7 @@ sub new
             '20010101' => {rate => '0.345'},
             '20020101' => {rate => '0.365'},
             '20030101' => {rate => '0.36'},
+            '20040101' => {rate => '0.375'},
     };
   if (defined $args{debug})
   { $self->{debug} = $args{debug}; }

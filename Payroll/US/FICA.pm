@@ -1,7 +1,7 @@
 # FICA.pm
 # Created:  Feb 27 15:24:49 CST 2002
 # by JT Moree
-# $Id: FICA.pm,v 1.7 2003/09/05 19:50:06 moreejt Exp $
+# $Id: FICA.pm,v 1.8 2004/01/05 20:12:54 moreejt Exp $
 # License: same as perl
 # 2002-2003 Xperience, Inc. www.pcxperience.com
 
@@ -59,7 +59,8 @@ sub new
             '19990101' => {cap => '72000.00' , rate => '0.062'},
             '20000101' => {cap => '76200.00' , rate => '0.062'},
             '20010101' => {cap => '80400.00' , rate => '0.062'},
-#            '200201101' => {cap => '80400.00' , rate => '0.062'},  #same as 2001
+            '200301101' => {cap => '87000.00' , rate => '0.062'},
+            '200401101' => {cap => '87900.00' , rate => '0.062'},
     };
   if (defined $args{debug})
   { $self->{debug} = $args{debug}; }

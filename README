@@ -29,14 +29,16 @@ To install from tarball:
         cp process_payroll /usr/bin
 
 
-To install from rpm:
+To install from deb:
+	Goto http://www.pcxperience.org/ for the apt/sources.list entries to
+	use.
 
-	rpm -Uvh payroll-VERSION.i386.rpm
-
+	apt-get update
+	apt-get install libpayroll-perl
 
 See the payroll_test.pl script and input.xml file for a sample implementation.
 
-Use process_payroll (in the /usr/bin directory after an rpm install, otherwise
+Use process_payroll (in the /usr/bin directory after a deb install, otherwise
 in your perl tree) to actually process payroll files for real.
 
 process_payroll will take the specified raw xml file and process it.  If no

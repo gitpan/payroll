@@ -1,7 +1,7 @@
 # StateIncome.pm
 # Created:  Thu Feb 14 15:30:24 CST 2002
 # by Xperience, Inc. (mailto:admin@pcxperience.com)
-# $Id: StateIncome.pm,v 1.10 2003/06/24 21:44:20 moreejt Exp $
+# $Id: StateIncome.pm,v 1.11 2004/01/05 20:12:55 moreejt Exp $
 # Copyright (c) 2002-2003 http://www.pcxperience.org  All rights reserved.
 # license: same as perl
 
@@ -72,10 +72,7 @@ sub new
                allowance3 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
                allowance4 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
                allowance5 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
-               federalLimit => { single => '5000', married => '10000'},
-               married => '10000' ,
-               spouseWorks => '10000',
-               head => '10000' ,
+               federalLimit => { single => '5000', married => '10000', spouseWorks => '5000'},
                percentTable => [
                     {bottom => '0', percent => '.015' },
                     {bottom => '1000.01', percent => '.02' },
@@ -96,10 +93,7 @@ sub new
                allowance3 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '0'},
                allowance4 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '0'},
                allowance5 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
-               federalLimit => { single => '5000', married => '10000'},
-               married => '10000' ,
-               spouseWorks => '5000',
-               head => '10000' ,
+               federalLimit => { single => '5000', married => '10000', spouseWorks => '5000'},
                percentTable => [
                     {bottom => '0', percent => '.015' },
                     {bottom => '1000.01', percent => '0.02' },
@@ -120,10 +114,28 @@ sub new
                allowance3 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '0'},
                allowance4 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '0'},
                allowance5 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
-               federalLimit => { single => '5000', married => '10000'},
-               married => '10000' ,
-               spouseWorks => '5000',
-               head => '10000' ,
+               federalLimit => { single => '5000', married => '10000', spouseWorks => '5000' },
+               percentTable => [
+                    {bottom => '0', percent => '.015' },
+                    {bottom => '1000.01', percent => '0.02' },
+                    {bottom => '2000.01', percent => '0.025' },
+                    {bottom => '3000.01', percent => '0.03' },
+                    {bottom => '4000.01', percent => '0.035' },
+                    {bottom => '5000.01', percent => '0.04' },
+                    {bottom => '6000.01', percent => '0.045' },
+                    {bottom => '7000.01', percent => '0.05' },
+                    {bottom => '8000.01', percent => '0.055' },
+                    {bottom => '9000.01', percent => '0.06' }
+                ]
+            },
+            '20040101' => {
+               standardDeduction => {single => '4850', married => '7900' , spouseWorks => '4850', head => '7150' },
+               allowance1 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '3500'},
+               allowance2 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
+               allowance3 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
+               allowance4 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
+               allowance5 => { single => '1200', married => '1200' , spouseWorks => '1200', head => '1200'},
+               federalLimit => { single => '5000', married => '10000' , spouseWorks => '5000' },
                percentTable => [
                     {bottom => '0', percent => '.015' },
                     {bottom => '1000.01', percent => '0.02' },

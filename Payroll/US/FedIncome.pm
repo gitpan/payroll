@@ -1,7 +1,7 @@
 # FedIncome.pm
 # Created:  Thu Feb 14 15:24:49 CST 2002
 # by JT Moree
-# $Id: FedIncome.pm,v 1.9 2003/06/24 21:44:20 moreejt Exp $
+# $Id: FedIncome.pm,v 1.10 2004/01/05 20:12:54 moreejt Exp $
 #2002-2003 Xperience, Inc. www.pcxperience.com
 # license:  same as perl
 
@@ -105,6 +105,19 @@ sub new
                 ]
             },
             '20030601' => {
+                tables => {},
+                dailyWithholdingAllowance => 11.92,
+                dailyTableRows => [
+                    {singleBottom =>     '0.0'    , percent =>   '0'      , marriedBottom =>    '0.00' },
+                    {singleBottom =>   '10.20'    , percent => '.10'      , marriedBottom =>   '30.80' },
+                    {singleBottom =>   '37.30'    , percent => '.15'      , marriedBottom =>   '85.80' },
+                    {singleBottom =>  '118.50'    , percent => '.25'      , marriedBottom =>  '249.00' },
+                    {singleBottom =>  '263.50'    , percent => '.28'      , marriedBottom =>  '454.00' },
+                    {singleBottom =>  '571.90'    , percent => '.33'      , marriedBottom =>  '713.70' },
+                    {singleBottom => '1235.40'    , percent => '.35'      , marriedBottom => '1254.20' },
+                ]
+            },
+            '20040101' => {
                 tables => {},
                 dailyWithholdingAllowance => 11.92,
                 dailyTableRows => [
